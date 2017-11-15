@@ -6,5 +6,10 @@ pipeline {
         echo 'This is Pro Yan\'s PizzaHut'
       }
     }
+    stage('zip the file') {
+      steps {
+        sh 'zip -r twentysixteen.zip twentysixteen'
+      }
+    }
   }
 }
