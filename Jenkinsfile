@@ -11,5 +11,10 @@ pipeline {
         sh 'zip -r twentysixteen.zip twentysixteen'
       }
     }
+    stage('') {
+      steps {
+        ansiblePlaybook(playbook: '/apps/ansible/copy_wp/site.yml', colorized: true, credentialsId: '/apps/MIT-Lab-Star', inventory: '/apps/ansible/copy_wp/dev.host')
+      }
+    }
   }
 }
