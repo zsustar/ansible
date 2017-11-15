@@ -21,7 +21,7 @@ pipeline {
         echo 'WP has been updated successfully!'
       }
     }
-    stage('') {
+    stage('Approval') {
       steps {
         input(message: 'Pizza ?', id: '1')
       }
