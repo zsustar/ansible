@@ -12,8 +12,17 @@ pipeline {
       }
     }
     stage('Deploy New Theme') {
-      steps {
-        ansiblePlaybook(playbook: '/apps/ansible/copy_wp/site.yml', colorized: true, credentialsId: 'MIT-Lab-Star', inventory: '/apps/ansible/copy_wp/dev.host', extras: '--extra-vars \'{"wp_theme":"twentysixteen"}\' --extra-vars \'{"wp_theme_file":"twentysixteen.zip"}\'')
+      parallel {
+        stage('Deploy New Theme') {
+          steps {
+            ansiblePlaybook(playbook: '/apps/ansible/copy_wp/site.yml', colorized: true, credentialsId: 'MIT-Lab-Star', inventory: '/apps/ansible/copy_wp/dev.host', extras: '--extra-vars \'{"wp_theme":"twentysixteen"}\' --extra-vars \'{"wp_theme_file":"twentysixteen.zip"}\'')
+          }
+        }
+        stage('') {
+          steps {
+            input(message: 'Pizza or Noodle?', id: '1')
+          }
+        }
       }
     }
     stage('Test Done') {
