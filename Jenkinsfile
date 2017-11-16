@@ -19,6 +19,7 @@ pipeline {
     stage('Test Done') {
       steps {
         echo 'WP has been updated successfully!'
+        emailext(subject: 'test', body: 'email body', from: 'star', postsendScript: 'echo hellow')
       }
     }
     stage('Approval') {
